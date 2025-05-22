@@ -1,0 +1,51 @@
+# === Python / Django ===
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+env/
+venv/
+.env
+*.sqlite3
+*.log
+media/
+staticfiles/
+
+# Django migrations (optional)
+**/migrations/*.py
+!*/migrations/__init__.py
+
+# === Node / Nuxt ===
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.nuxt/
+dist/
+.env.local
+.env.*.local
+
+# === VSCode / IDE ===
+.vscode/
+.idea/
+*.swp
+
+# === Docker ===
+*.pid
+docker-compose.override.yml
+
+# === OS / Misc ===
+.DS_Store
+Thumbs.db
+
+# === Logs ===
+logs/
+*.log
+
+# === Test ===
+coverage/
+htmlcov/
+pytest_cache/
+
+# === Celery Beat Schedule File ===
+celerybeat-schedule

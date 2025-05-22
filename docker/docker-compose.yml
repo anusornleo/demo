@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  backend:
+    build: ../backend
+    command: gunicorn core.asgi:application -k uvicorn.workers.UvicornWorker
+    ports: [ "8000:8000" ]
+    volumes: [ "../backend:/app" ]
+    env_file: ../.env
+    depends_on: [ db, redis ]
+  
+  frontend:
+    build: ../frontend
+    command: "yarn dev"
+    ports: [ "3000:3000" ]
+    volumes: [ "../frontend:/app" ]
+    env_file: ../.env
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports: [ "5432:5432" ]
+
+  redis:
+    image: redis:alpine
+
+  nginx:
+    image: nginx
+    ports: [ "80:80" ]
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
