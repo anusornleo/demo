@@ -1,13 +1,13 @@
-version: '3.8'
+#version: '3.8'
 services:
   backend:
     build: ../backend
-    command: gunicorn core.asgi:application -k uvicorn.workers.UvicornWorker
+    command: daphne -b 0.0.0.0 -p 8000 core.asgi:application
     ports: [ "8000:8000" ]
     volumes: [ "../backend:/app" ]
     env_file: ../.env
     depends_on: [ db, redis ]
-  
+
   frontend:
     build: ../frontend
     command: "yarn dev"
